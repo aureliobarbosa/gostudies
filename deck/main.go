@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-
 	fmt.Println("Initial test!")
-	NewDeck()
+	deck := NewDeck()
+	deck.print()
 }

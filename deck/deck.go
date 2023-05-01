@@ -2,33 +2,46 @@ package main
 
 import "fmt"
 
-type CardNumber int64
-type Suit string
+type CardNumber int64  // TODO: Validate CardNumber
+type Suit string	// TODO: Validate Suit
 
 type Card struct {
-	value CardNumber
+	number CardNumber
+	numberString string
 	suit  Suit
+	stamp string
+	value int64	
 }
 
-var cardNumberStrings = []string{"A", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"}
+var cardNumberStrings = []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"}
 var suitStrings = []string{"♥", "♠", "♦", "♣"}
 
-type deck []Card
+type Deck []Card
 
-func (c Card) toString() string {
-	return cardNumberStrings[c.value] + string(c.suit)
+func (deck Deck) print() {
+	for _, card := range deck {
+		if len(card.stamp) != 0 {
+			fmt.Printf("%v ",card.stamp)
+		} else {
+			fmt.Printf("%v%v ",card.numberString, string(card.suit))
+		}
+	}
+	fmt.Println()
 }
 
-func NewDeck() {
-	// maxNumber = len(cardNumberStrings)
-
-	// var myDeck deck
-	// var thisCard Card
+func NewDeck() Deck {
+	deck := Deck{}
+	card := new(Card)
 
 	for _, suitString := range suitStrings {
-		for _, cardNumberString := range cardNumberStrings {
-			fmt.Printf("%v%v ", cardNumberString, suitString)
+		for i, cardNumberString := range cardNumberStrings {
+			card.number = CardNumber(i + 1)
+			card.numberString = cardNumberString
+			card.suit = Suit(suitString)
+			card.value  = 0
+			card.stamp = cardNumberString + suitString
+			deck = append(deck,*card)
 		}
-		fmt.Println()
 	}
+	return deck
 }
