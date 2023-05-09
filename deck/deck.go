@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 type CardNumber int64  // TODO: Validate CardNumber
 type Suit string	// TODO: Validate Suit
@@ -27,6 +30,16 @@ func (deck Deck) print() {
 		}
 	}
 	fmt.Println()
+}
+
+func (deck Deck) shuffle() {	
+	var j int
+
+	n := len(deck)
+	for i := 0; i < n; i++ {		
+		j = rand.Intn(n)
+		deck[i], deck[j] = deck[j], deck[i]
+	}
 }
 
 func NewDeck() Deck {
