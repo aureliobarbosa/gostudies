@@ -30,13 +30,17 @@ func printArea(s Shape) {
 func main() {
 	// var t Triangle
 
-	t := Triangle{5.0, 10.0}
-	s := Square{5.0}
+	t := Triangle{
+		height: 5.0,
+		base:   10.0,
+	}
+	s := Square{
+		sideLength: 5.0,
+	}
 
 	fmt.Printf("Triangle Area: ")
 	printArea(t)
 
 	fmt.Printf("Square Area: ")
 	printArea(s)
-
 }
